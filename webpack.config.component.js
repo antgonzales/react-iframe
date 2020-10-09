@@ -1,7 +1,8 @@
+const EsmWebpackPlugin = require("@purtuga/esm-webpack-plugin");
+
 module.exports = {
   entry: {
-    home: './src/Home/index.js',
-    remote: './src/Remote/index.js',
+    otherComponent: './src/OtherComponent/index.js',
   },
   module: {
     rules: [
@@ -18,7 +19,11 @@ module.exports = {
   output: {
     path: __dirname + '/lib',
     publicPath: '/',
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
-  }
+    filename: '[name].esm.js',
+    libraryTarget: 'var',
+    library: 'MODULE',
+  },
+  plugins: [
+    new EsmWebpackPlugin()
+  ]
 };
